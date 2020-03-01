@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.avalon.lark.systemadmin.dao.RbacDao">
+
+    <select id="getUser" parameterType="java.lang.String" resultType="org.avalon.lark.systemadmin.entity.User">
+        SELECT * FROM SA_USER WHERE LOGIN_ID = #{loginId}
+    </select>
+
+    <select id="getLastLoginHistory" parameterType="java.lang.String" resultType="org.avalon.lark.systemadmin.entity.LoginHistory">
+        SELECT * FROM USER_LOGIN_HISTORY WHERE LOGIN_ID = #{loginId} ORDER BY LOGIN_ATTEMPT_AT DESC;
+    </select>
+
+</mapper>
