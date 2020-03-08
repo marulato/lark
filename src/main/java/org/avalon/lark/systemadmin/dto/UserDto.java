@@ -2,7 +2,6 @@ package org.avalon.lark.systemadmin.dto;
 
 import org.avalon.lark.common.base.BaseDto;
 import org.avalon.lark.common.base.BasePo;
-import org.avalon.lark.common.validation.Validate;
 import org.avalon.lark.common.validation.Validator;
 import org.avalon.lark.systemadmin.validator.UserValidator;
 
@@ -30,6 +29,9 @@ public class UserDto extends BaseDto {
     private String newPassword;
     private String reEnterNewPassword;
 
+    public UserDto(){
+        super(null);
+    }
 
     public UserDto(BasePo po) {
         super(po);

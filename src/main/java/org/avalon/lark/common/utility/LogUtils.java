@@ -9,4 +9,15 @@ public class LogUtils {
         }
         return builder.toString();
     }
+
+    public static String join(Object... logs) {
+        if (logs != null) {
+            StringBuilder builder = new StringBuilder();
+            for (Object s : logs) {
+                builder.append(s);
+            }
+            return builder.toString();
+        }
+        return "";
+    }
 }

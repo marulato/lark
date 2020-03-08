@@ -65,4 +65,8 @@ public class StringUtils {
         }
         return src;
     }
+
+    public static Boolean parseBoolean(String s) {
+        return "true".equalsIgnoreCase(s) || "Y".equalsIgnoreCase(s);
+    }
 }

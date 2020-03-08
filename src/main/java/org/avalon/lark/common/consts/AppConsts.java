@@ -2,6 +2,8 @@ package org.avalon.lark.common.consts;
 
 public class AppConsts {
 
+    public static final String WEB_ENC_KEY  = "LaRkWEbAppDEV-01";
+
     public static final String YES = "Y";
     public static final String NO  = "N";
 
