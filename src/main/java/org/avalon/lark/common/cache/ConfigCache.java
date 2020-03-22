@@ -10,11 +10,6 @@ import org.avalon.lark.systemadmin.entity.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
 public class ConfigCache implements ICache {
 
     private static LoadingCache<String, Config> configCache;
@@ -26,7 +21,7 @@ public class ConfigCache implements ICache {
             @Override
             public Config load(String key) throws Exception {
                 log.debug(key + " has been cached");
-                return configDao.getConfig(key);
+                return  configDao.getConfig(key);
             }
         });
         log.info(LogUtils.printLine(10, "*") +

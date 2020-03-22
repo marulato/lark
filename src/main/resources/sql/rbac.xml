@@ -4,11 +4,25 @@
 <mapper namespace="org.avalon.lark.systemadmin.dao.RbacDao">
 
     <select id="getUser" parameterType="java.lang.String" resultType="org.avalon.lark.systemadmin.entity.User">
-        SELECT * FROM SA_USER WHERE LOGIN_ID = #{loginId}
+        SELECT *
+        FROM SA_USER
+        WHERE LOGIN_ID = #{loginId};
     </select>
 
-    <select id="getLastLoginHistory" parameterType="java.lang.String" resultType="org.avalon.lark.systemadmin.entity.LoginHistory">
-        SELECT * FROM USER_LOGIN_HISTORY WHERE LOGIN_ID = #{loginId} ORDER BY LOGIN_ATTEMPT_AT DESC;
+    <select id="getLastLoginHistory" parameterType="java.lang.String"
+            resultType="org.avalon.lark.systemadmin.entity.LoginHistory">
+        SELECT *
+        FROM USER_LOGIN_HISTORY
+        WHERE LOGIN_ID = #{loginId}
+        ORDER BY LOGIN_ATTEMPT_AT DESC;
+    </select>
+
+    <select id="getUserRoles" parameterType="java.lang.String"
+            resultType="org.avalon.lark.systemadmin.entity.UserRoleAssign">
+        SELECT T1.*
+        FROM USER_ROLE_ASSIGN T1
+                 LEFT JOIN SA_USER T2 ON T1.USER_ID = T2.USER_ID
+        WHERE T2.LOGIN_ID = #{loginId};
     </select>
 
 </mapper>

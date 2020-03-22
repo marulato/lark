@@ -10,9 +10,9 @@ import org.avalon.lark.systemadmin.dao.RbacDao;
 import org.avalon.lark.systemadmin.dto.UserDto;
 import org.avalon.lark.systemadmin.entity.LoginHistory;
 import org.avalon.lark.systemadmin.entity.User;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
 
 @Service
@@ -37,7 +37,7 @@ public class UserMaintenanceService {
             } else {
                 user.setFailedAttempts(user.getFailedAttempts() + 1);
                 loginHistory.setIsSuccessful(AppConsts.NO);
-                int times = Integer.parseInt(ConfigUtils.get("lark.security.login.failedtimes"));
+                int times = Integer.parseInt(ConfigUtils.getString("lark.security.login.failedtimes"));
                 if (user.getFailedAttempts() >= times && times > 0) {
                     user.setStatus(AppConsts.ACCT_STATUS_LOCKED);
                 }

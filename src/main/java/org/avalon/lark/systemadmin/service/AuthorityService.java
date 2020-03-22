@@ -12,7 +12,6 @@ import org.avalon.lark.systemadmin.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Service
@@ -52,6 +51,12 @@ public class AuthorityService {
         if (pwdMatches) {
             loginStatus = AppConsts.LOGIN_SUCCESSFULLY;
             userMaintenanceSvc.updateUserAfterLogin(webUser, true);
+            AppContext appContext = new AppContext();
+            appContext.setRoles(rbacDao.getUserRoles(user.getLoginId()));
+            appContext.setLoginDatetime(new Date());
+            appContext.setLoginId(user.getLoginId());
+            AppUtils.setThreadContext(appContext);
+
         } else {
             loginStatus = AppConsts.LOGIN_PWD_MISMATCH;
             userMaintenanceSvc.updateUserAfterLogin(webUser, false);

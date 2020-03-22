@@ -5,6 +5,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.crypto.Cipher;
+import javax.crypto.Mac;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -76,5 +77,12 @@ public class EncryptionUtils {
             return new String(decrypted, StandardCharsets.UTF_8);
         }
         return null;
+    }
+
+    public static String encryptHmacSHA256(String data, String secret) throws Exception {
+        Mac mac = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        mac.init(secretKeySpec);
+        return Base64.encodeBase64String(mac.doFinal(data.getBytes(StandardCharsets.UTF_8)));
     }
 }

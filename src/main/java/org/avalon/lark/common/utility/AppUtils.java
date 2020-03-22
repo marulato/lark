@@ -2,6 +2,7 @@ package org.avalon.lark.common.utility;
 
 import org.avalon.lark.common.base.AppContext;
 import org.avalon.lark.common.consts.SystemConsts;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class AppUtils {
@@ -32,6 +33,7 @@ public class AppUtils {
         AppContext.threadContext.remove();
         AppContext.threadContext.set(appContext);
     }
+
 
 
 }
